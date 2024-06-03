@@ -20,7 +20,7 @@ const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
 app.use(
   cors({
     origin: "https://query-doc-ra4f.vercel.app/",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    methods: ["POST"],
     allowedHeaders: ["Content-Type", "Accept"],
     optionsSuccessStatus: 200,
   })
@@ -85,10 +85,6 @@ app.post("/ask", async (req, res) => {
     res.status(500).json({ success: false, error: "Error answering question" });
   }
 });
-
-app.get("/", async(req, res)=>{
-  res.json({message:"Hellooo"})
-})
 
 // Start the server
 app.listen(PORT, () => {
