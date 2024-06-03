@@ -17,7 +17,7 @@ const PORT = process.env.PORT |3001
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
 
 // Set up CORS middleware
-const allowedOrigins = ["https://query-doc-new.vercel.app"];
+const allowedOrigins = ["https://query-doc-ra4f.vercel.app"];
 const corsOptions = {
   origin: function (origin, callback) {
     if (allowedOrigins.includes(origin) || !origin) {
