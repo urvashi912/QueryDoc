@@ -23,6 +23,14 @@
             "headers": {
               "Access-Control-Allow-Origin": "*"
             }
+        },
+        {
+            "src": "/",
+            "dest": "/server.js",
+            "methods": ["GET"],
+            "headers": {
+              "Access-Control-Allow-Origin": "*"
+            }
         }
     ]
 }
