@@ -5,8 +5,6 @@
             "src": "./index.py",
             "use": "@vercel/python"
         }
-    ],"rewrites": [
-        { "source": "/(.*)", "destination": "src/app.js" }
     ],
     "routes": [
         { "handle": "filesystem" },
