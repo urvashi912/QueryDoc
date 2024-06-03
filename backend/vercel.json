@@ -1,15 +1,18 @@
 {
-    "version":2,
-    "builds":[
+    "version": 2,
+    "routes": [
+        { "handle": "filesystem" },
         {
-            "src":"*.js",
-            "use":"@vercel/node"
-        }
-    ],
-    "routes":[
+            "src": "/upload",
+            "dest": "/server.js"
+        },
         {
-            "src":"/(.*)",
-            "dest":"/"
+            "src": "/ask",
+            "dest": "/server.js"
+        },
+        {
+            "src": "/",
+            "dest": "/server.js"
         }
     ]
 }
