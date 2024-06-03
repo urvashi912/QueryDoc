@@ -17,13 +17,19 @@ const PORT = process.env.PORT |3001
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
 
 // Set up CORS middleware
-app.use(cors(
-  {
-    origin:["https://query-doc-ra4f.vercel.app"],
-  methods:["POST","GET"],
-  credentials:true
-  }
-));
+const allowedOrigins = ["https://query-doc-new.vercel.app"];
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["POST", "GET"],
+  credentials: true,
+};
+app.use(cors(corsOptions));
 app.use(express.json()); // Add this line to parse JSON requests
 
 // Set up storage for uploaded files
