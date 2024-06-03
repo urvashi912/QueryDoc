@@ -13,7 +13,7 @@ const { METHODS } = require('http');
 
 // Create an express application
 const app = express();
-const PORT = process.env.PORT |3001
+const PORT = process.env.PORT || 3001
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
 
 // Set up CORS middleware
