@@ -4,7 +4,7 @@
         { "handle": "filesystem" },
         {
             "src": "/upload",
-            "dest": "/server.js",
+            "dest": "/backend/server.js",
             "methods": ["POST"],
             "headers": {
               "Access-Control-Allow-Origin": "*"
@@ -12,7 +12,7 @@
         },
         {
             "src": "/ask",
-            "dest": "/server.js",
+            "dest": "/backend/server.js",
             "methods": ["POST"],
             "headers": {
               "Access-Control-Allow-Origin": "*"
@@ -26,5 +26,10 @@
               "Access-Control-Allow-Origin": "*"
             }
         }
-    ]
+    ], "builds": [
+        {
+          "src": "api/server.js",
+          "use": "@vercel/node"
+        }
+      ]
 }
