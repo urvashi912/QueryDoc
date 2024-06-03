@@ -8,6 +8,7 @@ const cors = require("cors");
 const pdf = require("pdf-parse");
 const { ChatGoogleGenerativeAI } = require("@langchain/google-genai");
 const { HumanMessage } = require("@langchain/core/messages");
+const { METHODS } = require('http');
 
 // Create an express application
 const app = express();
@@ -15,7 +16,13 @@ const PORT = process.env.PORT |3001
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
 
 // Set up CORS middleware
-app.use(cors());
+app.use(cors(
+  {
+    origin:["https://query-doc-api.vercel.app/"],
+  methods:["POST","GET"],
+  credentials:true
+  }
+));
 app.use(express.json()); // Add this line to parse JSON requests
 
 // Set up storage for uploaded files
