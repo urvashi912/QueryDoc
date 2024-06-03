@@ -20,7 +20,7 @@
         },
         {
             "src": "/",
-            "dest": "/server.js",
+            "dest": "/backend/server.js",
             "methods": ["GET"],
             "headers": {
               "Access-Control-Allow-Origin": "*"
