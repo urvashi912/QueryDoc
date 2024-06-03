@@ -4,24 +4,19 @@
         { "handle": "filesystem" },
         {
             "src": "/upload",
-            "dest": "/server.js"
-        },
-        {
-            "src": "/ask",
-            "dest": "/server.js"
-        },
-        {
-            "src": "/",
-            "dest": "/server.js"
-        },
-
-        {
-            "src": "/(.*)",
-            "dest": "./index.js",
-            "methods": ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+            "dest": "/server.js",
+            "methods": ["POST"],
             "headers": {
               "Access-Control-Allow-Origin": "*"
             }
-          }
+        },
+        {
+            "src": "/ask",
+            "dest": "/server.js",
+            "methods": ["POST"],
+            "headers": {
+              "Access-Control-Allow-Origin": "*"
+            }
+        }
     ]
 }
