@@ -8,7 +8,7 @@ const cors = require("cors");
 const pdf = require("pdf-parse");
 const { ChatGoogleGenerativeAI } = require("@langchain/google-genai");
 const { HumanMessage } = require("@langchain/core/messages");
-const { METHODS } = require('http');
+
 
 
 // Create an express application
