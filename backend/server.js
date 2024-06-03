@@ -18,7 +18,7 @@ const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
 // Set up CORS middleware
 app.use(cors(
   {
-    origin:["https://query-doc-new.vercel.app/"],
+    origin:["https://query-doc-new.vercel.app"],
   methods:["POST","GET"],
   credentials:true
   }
