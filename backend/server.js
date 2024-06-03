@@ -17,7 +17,9 @@ const PORT = process.env.PORT || 3001
 const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
 
 // Set up CORS middleware
-app.use(cors());
+app.use(cors({
+  origin: 'https://query-doc-ra4f.vercel.app/'
+}));
 app.use(express.json()); // Add this line to parse JSON requests
 
 // Set up storage for uploaded files
