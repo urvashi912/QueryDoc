@@ -85,7 +85,7 @@ app.post("/ask", async (req, res) => {
 });
 
 app.get("/", async(req, res)=>{
-  res.json("hello")
+  res.json({message:"Hellooo"})
 })
 
 // Start the server
