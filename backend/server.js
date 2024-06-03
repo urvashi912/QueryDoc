@@ -1,5 +1,6 @@
 // Import necessary modules
-require("dotenv").config();
+const dotenv = require('dotenv');
+dotenv.config()
 const express = require("express");
 const multer = require("multer");
 const fs = require("fs");
@@ -10,7 +11,8 @@ const { HumanMessage } = require("@langchain/core/messages");
 
 // Create an express application
 const app = express();
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT |3001
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
 
 // Set up CORS middleware
 app.use(cors());
@@ -41,7 +43,7 @@ async function askQuestion(context, question) {
   const model = new ChatGoogleGenerativeAI({
     modelName: "gemini-pro",
     maxOutputTokens: 2048,
-    apiKey: "AIzaSyBqA0ct_S_QJHBIc6q7amEK5VFF7lQVQ3U", // Replace "YOUR_API_KEY" with your actual API key
+    apiKey: GOOGLE_API_KEY, // Replace "YOUR_API_KEY" with your actual API key
   });
 
   const response = await model.invoke([
