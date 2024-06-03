@@ -26,5 +26,10 @@
               "Access-Control-Allow-Origin": "*"
             }
         }
-    ]
+    ],
+    "builds": [
+        {
+          "src": "/server.js",
+          "use": "@vercel/node"
+        }
 }
