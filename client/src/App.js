@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import axios from 'axios'; // Import Axios for making HTTP requests
-
 function App() {
   const [pdfFile, setPdfFile] = useState(null);
   const [question, setQuestion] = useState("");
