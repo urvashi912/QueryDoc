@@ -27,7 +27,7 @@ app.use(express.json()); // Add this line to parse JSON requests
 // Set up storage for uploaded files
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, '/tmp/');
+    cb(null, path.join(__dirname,'/tmp/'));
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
