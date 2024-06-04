@@ -1,1 +1,28 @@
-{ "version": 2, "rewrites": [{ "source": "/server.js", "destination": "/backend" }] }
+{
+    "version": 2,
+    "routes": [
+        { "handle": "filesystem" },
+        {
+            "src": "/upload",
+            "dest": "/server.js",
+            "methods": ["POST"],
+            "headers": {
+              "Access-Control-Allow-Origin": "*"
+            }
+        },
+        {
+            "src": "/ask",
+            "dest": "/server.js",
+            "methods": ["POST"],
+            "headers": {
+              "Access-Control-Allow-Origin": "*"
+            }
+        }
+    ],
+    "builds": [
+        {
+          "src": "/server.js",
+          "use": "@vercel/node"
+        }
+    ]
+}
