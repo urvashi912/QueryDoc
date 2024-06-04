@@ -27,7 +27,7 @@ app.use(express.json()); // Add this line to parse JSON requests
 // Set up storage for uploaded files
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './public/tmp');
+    cb(null, './public/tmp/');
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -39,7 +39,8 @@ const upload = multer({ storage: storage });
 
 // Function to extract text from a PDF file
 async function extractTextFromPDF(filePath) {
-  const dataBuffer = fs.readFileSync(filePath);
+  const fullFilePath = path.join(__dirname, 'public', 'tmp', filePath);
+  const dataBuffer = fs.readFileSync(fullFilePath);
   const data = await pdf(dataBuffer);
   return data.text;
 }
