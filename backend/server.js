@@ -19,12 +19,7 @@ const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
 
 // Set up CORS middleware
 app.use(
-  cors({
-    origin: "*",
-    methods: ["POST"],
-    allowedHeaders: ["Content-Type", "Accept"],
-    optionsSuccessStatus: 200,
-  })
+  cors()
 );
 
 app.use(express.json()); // Add this line to parse JSON requests
