@@ -6,6 +6,7 @@ const multer = require("multer");
 const fs = require("fs");
 const cors = require("cors");
 const pdf = require("pdf-parse");
+const path = require('path');
 const { ChatGoogleGenerativeAI } = require("@langchain/google-genai");
 const { HumanMessage } = require("@langchain/core/messages");
 
