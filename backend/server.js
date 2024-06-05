@@ -24,7 +24,7 @@ app.use(
 
 app.use(express.json()); // Add this line to parse JSON requests
 
-const uploadDirectory = path.join(process.cwd(), 'public', 'tmp');
+const uploadDirectory = path.join(process.cwd(), 'tmp');
 if (!fs.existsSync(uploadDirectory)) {
   fs.mkdirSync(uploadDirectory, { recursive: true });
 }
