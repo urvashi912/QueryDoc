@@ -67,8 +67,8 @@ const MainPage = () => {
   return (
     <>
       <div>
-        <h1 style={{ textAlign: "center", color: "white" }}>QueryDoc</h1>
-        <p style={{ textAlign: "center", marginBottom: "50px", color: "white" }}>Upload a PDF, Ask Questions, Gain Insights!</p>
+        <h1 style={{ textAlign: "center" }}>QueryDoc</h1>
+        <p style={{ textAlign: "center", marginBottom: "50px" }}>Upload a PDF, Ask Questions, Gain Insights!</p>
       </div>
       <div className="chat-container">
         <div className="chat">

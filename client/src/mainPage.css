@@ -1,8 +1,4 @@
 
-body{
-  background-color: rgb(32, 31, 31);
-}
-
 .container {
   position: relative;
   max-width: 800px;
@@ -27,7 +23,7 @@ body{
 }
 
 .message {
-  padding: 10px;
+  padding: 2px;
   margin-bottom: 10px;
   border-radius: 5px;
   max-width: 50%;
