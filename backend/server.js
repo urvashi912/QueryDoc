@@ -10,25 +10,20 @@ const path = require('path');
 const { ChatGoogleGenerativeAI } = require("@langchain/google-genai");
 const { HumanMessage } = require("@langchain/core/messages");
 
-
-
 // Create an express application
 const app = express();
-const PORT = process.env.PORT || 3001
-const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY
+const PORT = process.env.PORT || 3001;
+const GOOGLE_API_KEY = process.env.GOOGLE_API_KEY;
 
 // Set up CORS middleware
-app.use(
-  cors()
-);
+app.use(cors());
 
 app.use(express.json()); // Add this line to parse JSON requests
-
 
 // Set up storage for uploaded files
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './temp');
+    cb(null, '/tmp/'); // Change the destination path to /tmp/
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -40,7 +35,7 @@ const upload = multer({ storage: storage });
 
 // Function to extract text from a PDF file
 async function extractTextFromPDF(filePath) {
-  const fullFilePath = path.join(__dirname, 'temp', filePath);
+  const fullFilePath = path.join(process.cwd(), 'temp', filePath); // Using process.cwd() instead of __dirname
   console.log("Full File Path:", fullFilePath);
   const dataBuffer = await fs.promises.readFile(fullFilePath);
   const data = await pdf(dataBuffer);
