@@ -18,12 +18,12 @@
   overflow-y: auto;
   display: flex;
   flex-direction: column-reverse;
-  padding: 30px;
+  padding: 10px;
 
 }
 
 .message {
-  padding: 2px;
+  padding: 10px;
   margin-bottom: 10px;
   border-radius: 5px;
   max-width: 50%;
