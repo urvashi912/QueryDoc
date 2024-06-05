@@ -5,8 +5,13 @@ import './mainPage.css'; // Import your CSS file
 const MainPage = () => {
   const [pdfFile, setPdfFile] = useState(null);
   const [question, setQuestion] = useState("");
-  const [answer, setAnswer] = useState("");
+  const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+
+
+
+
+
 
   const handleFileChange = (event) => {
     setPdfFile(event.target.files[0]);
@@ -38,7 +43,19 @@ const MainPage = () => {
 
       const askQuestionResponse = await axios.post("https://querydoc-rlsu.onrender.com/ask", { text: extractedText, question });
 
-      setAnswer(askQuestionResponse.data.answer);
+
+      const responseMessage = {
+        sender: 'bot',
+        text: askQuestionResponse.data.answer
+      };
+      const newMessage = {
+        sender: 'user',
+        text: question
+      };
+
+
+
+      setMessages([...messages, newMessage, responseMessage]);
     } catch (error) {
       console.error("Error:", error);
       alert("An error occurred while processing your request.");
@@ -48,25 +65,28 @@ const MainPage = () => {
   };
 
   return (
-    <div className="container">
-      <h1>QueryDoc</h1>
-      <p>Discover Answers: Upload a PDF, Ask Questions, Gain Insights!</p>
-      <div className="form-group">
-        <label htmlFor="fileInput">Upload PDF File:</label>
-        <input id="fileInput" type="file" onChange={handleFileChange} />
+    <>
+      <div>
+        <h1 style={{ textAlign: "center", color: "white" }}>QueryDoc</h1>
+        <p style={{ textAlign: "center", marginBottom: "50px", color: "white" }}>Upload a PDF, Ask Questions, Gain Insights!</p>
       </div>
-      <div className="form-group">
-        <label htmlFor="questionInput">Enter your question:</label>
-        <textarea id="questionInput" rows={4} cols={50} placeholder="Enter your question..." value={question} onChange={handleQuestionChange} />
-      </div>
-      <button onClick={handleSubmit} disabled={loading}>{loading ? 'Loading...' : 'Ask Question'}</button>
-      {answer && (
-        <div className="answer">
-          <h2>Answer:</h2>
-          <p>{answer}</p>
+      <div className="chat-container">
+        <div className="chat">
+          {messages.slice().reverse().map((message, index) => (
+            <div key={index} className={`message ${message.sender}`}>
+              {message.text}
+            </div>
+          ))}
         </div>
-      )}
-    </div>
+        <div className="input-container">
+          <input id="fileInput" type="file" onChange={handleFileChange} />
+          <textarea id="questionInput" rows={4} placeholder="Enter your question..." value={question} onChange={handleQuestionChange} />
+          <button onClick={handleSubmit} disabled={loading}>{loading ? 'Loading...' : 'Send'}</button>
+        </div>
+      </div>
+
+    </>
+
   );
 }
 
