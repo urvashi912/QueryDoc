@@ -23,7 +23,7 @@ function App() {
       const formData = new FormData();
       formData.append("pdf", pdfFile);
 
-      const uploadResponse = await axios.post("https://query-doc.vercel.app/upload", formData, {
+      const uploadResponse = await axios.post("https://querydoc-rlsu.onrender.com/upload", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },
@@ -33,7 +33,7 @@ function App() {
 
       const extractedText = uploadResponse.data.text;
 
-      const askQuestionResponse = await axios.post("https://query-doc.vercel.app/ask", { text: extractedText, question });
+      const askQuestionResponse = await axios.post("https://querydoc-rlsu.onrender.com/ask", { text: extractedText, question });
 
       console.log("Ask Question Response:", askQuestionResponse.data); // Log the response from the ask endpoint
 
