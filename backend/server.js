@@ -23,7 +23,7 @@ app.use(express.json()); // Add this line to parse JSON requests
 // Set up storage for uploaded files
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, './tmp/'); // Change the destination path to /tmp/
+    cb(null, './uploads/'); // Change the destination path to /tmp/
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -35,11 +35,10 @@ const upload = multer({ storage: storage });
 
 // Function to extract text from a PDF file
 async function extractTextFromPDF(filePath) {
-  const fullFilePath = path.join(process.cwd(), 'tmp', filePath); // Using process.cwd() instead of __dirname
-  console.log("Full File Path:", fullFilePath);
-  const dataBuffer = await fs.promises.readFile(fullFilePath);
-  const data = await pdf(dataBuffer);
-  return data.text;
+ 
+    const dataBuffer = fs.readFileSync(filePath);
+    const data = await pdf(dataBuffer);
+    return data.text;
 }
 
 // Function to ask a question based on the PDF content
