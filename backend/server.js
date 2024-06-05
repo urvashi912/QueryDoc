@@ -23,7 +23,7 @@ app.use(express.json()); // Add this line to parse JSON requests
 // Set up storage for uploaded files
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, path.join(__dirname, './tmp/')); // Change the destination path to /tmp/
+    cb(null, "/opt/render/project/src/backend/tmp/"); // Change the destination path to /tmp/
   },
   filename: function (req, file, cb) {
     cb(null, file.originalname);
@@ -53,7 +53,7 @@ async function askQuestion(context, question) {
 // Route to handle file upload
 app.post("/upload", upload.single("pdf"), async (req, res) => {
   try {
-    const filePath = req.file.path;
+    const filePath = "/opt/render/project/src/backend/tmp/";
     console.log(filePath);
     const extractedText = await extractTextFromPDF(filePath);
     res.json({ success: true, text: extractedText });
