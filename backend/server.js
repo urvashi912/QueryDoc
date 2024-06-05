@@ -53,7 +53,7 @@ async function askQuestion(context, question) {
 // Route to handle file upload
 app.post("/upload", upload.single("pdf"), async (req, res) => {
   try {
-    const filePath = "/opt/render/project/src/tmp/";
+    const filePath = "/opt/render/project/src/backend/tmp/";
     console.log(filePath);
     const extractedText = await extractTextFromPDF(filePath);
     res.json({ success: true, text: extractedText });
