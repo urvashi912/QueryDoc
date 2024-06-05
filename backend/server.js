@@ -44,6 +44,7 @@ const upload = multer({ storage: storage });
 // Function to extract text from a PDF file
 async function extractTextFromPDF(filePath) {
   const fullFilePath = path.join(uploadDirectory, filePath);
+  console.log("Full File Path:", fullFilePath);
   const dataBuffer = await fs.promises.readFile(fullFilePath);
   const data = await pdf(dataBuffer);
   return data.text;
