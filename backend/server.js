@@ -40,7 +40,7 @@ const upload = multer({ storage: storage });
 // Function to extract text from a PDF file
 async function extractTextFromPDF(filePath) {
   const fullFilePath = path.join(__dirname,'public', 'tmp', filePath);
-  const dataBuffer = fs.readFileSync(fullFilePath);
+  const dataBuffer = await fs.promises.readFile(fullFilePath);
   const data = await pdf(dataBuffer);
   return data.text;
 }
@@ -62,7 +62,7 @@ async function askQuestion(context, question) {
 // Route to handle file upload
 app.post("/upload", upload.single("pdf"), async (req, res) => {
   try {
-    const filePath = req.file.path.replace(/^.*[\\\/]/, '');
+    const filePath = req.file.path;
     const extractedText = await extractTextFromPDF(filePath);
     res.json({ success: true, text: extractedText });
   } catch (error) {
