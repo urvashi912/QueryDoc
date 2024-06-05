@@ -29,10 +29,14 @@ function App() {
         },
       });
 
+      console.log("Upload Response:", uploadResponse.data); // Log the response from the upload endpoint
+
       const extractedText = uploadResponse.data.text;
 
       const askQuestionResponse = await axios.post("https://query-doc.vercel.app/ask", { text: extractedText, question });
-      
+
+      console.log("Ask Question Response:", askQuestionResponse.data); // Log the response from the ask endpoint
+
       setAnswer(askQuestionResponse.data.answer);
     } catch (error) {
       console.error("Error:", error);
