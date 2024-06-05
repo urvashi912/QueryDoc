@@ -34,11 +34,7 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 // Function to extract text from a PDF file
-async function extractTextFromPDF(filePath) {
-  const dataBuffer = fs.readFileSync(filePath);
-  const data = await pdf(dataBuffer);
-  return data.text;
-}
+
 
 // Function to ask a question based on the PDF content
 async function askQuestion(context, question) {
@@ -58,6 +54,7 @@ async function askQuestion(context, question) {
 app.post("/upload", upload.single("pdf"), async (req, res) => {
   try {
     const filePath = req.file.path;
+    console.log(filePath);
     const extractedText = await extractTextFromPDF(filePath);
     res.json({ success: true, text: extractedText });
   } catch (error) {
@@ -65,6 +62,18 @@ app.post("/upload", upload.single("pdf"), async (req, res) => {
     res.status(500).json({ success: false, error: "Error reading PDF file" });
   }
 });
+
+async function extractTextFromPDF(filePath) {
+  try {
+    // Ensure filePath is constructed properly and matches where Multer is storing the uploaded file
+    const dataBuffer = fs.readFileSync(filePath);
+    const data = await pdf(dataBuffer);
+    return data.text;
+  } catch (error) {
+    console.error("Error extracting text from PDF:", error);
+    throw error; // Rethrow the error to be caught by the caller
+  }
+}
 
 // Route to ask a question
 app.post("/ask", async (req, res) => {
